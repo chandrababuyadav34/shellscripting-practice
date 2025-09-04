@@ -1,11 +1,11 @@
 #!/bin/bash
 MOVIES=("COURT" "HIT" "PUSHPA2" "THANDEL" "JANTA")
 
-echo "First Movie: ${Movie[0]}"
-echo "First Movie: ${Movie[5]}"
+echo "First Movie: ${MOVIES[0]}"
+echo "First Movie: ${MOVIES[5]}"
 
 
 
-echo "All Movies: ${Movie[@]}"
+echo "All Movies: ${MOVIES[@]}"
 
 
