@@ -1,9 +1,9 @@
 #!/bin/bash
- NUMBER11=100
+ NUMBER1=100
  NUMBER2=200
  TIMESTAMP=$(date)
 
- echo "Sript executed at: $(TIMESTAMP)"
+ echo "Sript executed at: $TIMESTAMP"
  SUM=$(($NUMBER1+$NUMBER2))
 
 echo "SUM of $NUMBER1 and $NUMBER2 is: $SUM"
