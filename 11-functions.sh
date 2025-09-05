@@ -4,54 +4,49 @@ USERID=$(id -u)
 
 if [ $USERID -ne 0 ]
 then
-    echo "Error:: Please run the script as with root access"
-    exit 1
+    echo "ERROR:: Please run this script with root access"
+    exit 1 #give other than 0 upto 127
 else
-    echo "You are running the script with root access"
+    echo "You are running with root access"
 fi
 
-VALIDATE() {
-    if [ $1 -ne 0 ]
+# validate functions takes input as exit status, what command they tried to install
+VALIDATE(){
+    if [ $1 -eq 0 ]
     then
-        echo "Installing $2 is .. SUCCESS"
+        echo "Installing $2 is ... SUCCESS"
     else
-        echo "installing $2 is ... FAILURE"
+        echo "Installing $2 is ... FAILURE"
         exit 1
-    fi        
-
+    fi
 }
 
 dnf list installed mysql
-
 if [ $? -ne 0 ]
 then
-    echo "MYSQL is not installed. Going to install mysql"
-    dnf istall mysql -y
-    VALIDATE $? "Mysql"
+    echo "MySQL is not installed... going to install it"
+    dnf install mysql -y
+    VALIDATE $? "MySQL"
 else
-    echo "MYSQL is already Installed.. No need to install again"
+    echo "MySQL is already installed...Nothing to do"
 fi
 
 dnf list installed python3
-
 if [ $? -ne 0 ]
 then
-    echo "Python is not installed. Going to install Python"
-    dng install python3
-    VALIDATE $> "Python"
+    echo "python3 is not installed... going to install it"
+    dnf install python3 -y
+    VALIDATE $? "python3"
 else
-    echo "Python3 is already installed, Dont install again"
+    echo "python3 is already installed...Nothing to do"
 fi
 
 dnf list installed nginx
-
 if [ $? -ne 0 ]
 then
-    echo "nginx is not installed. I will install now"
-    dnf install nginx
+    echo "nginx is not installed... going to install it"
+    dnf install nginx -y
     VALIDATE $? "nginx"
 else
-    echo "nginx is already installed, No need to install again"
+    echo "nginx is already installed...Nothing to do"
 fi
-
-
